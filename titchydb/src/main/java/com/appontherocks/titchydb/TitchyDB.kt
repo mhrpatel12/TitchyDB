@@ -194,8 +194,8 @@ class TitchyDB {
      * @param defaultValue long value returned if key was not found
      * @return long value at 'key' or 'defaultValue' if key not found
      */
-    fun getLong(key: String, defaultValue: Long): Long {
-        return preferences.getLong(key, defaultValue)
+    fun getLong(key: String, defaultValue: Long): Long? {
+        return preferences?.getLong(key, defaultValue)
     }
 
     /**
@@ -204,8 +204,8 @@ class TitchyDB {
      * @param defaultValue float value returned if key was not found
      * @return float value at 'key' or 'defaultValue' if key not found
      */
-    fun getFloat(key: String): Float {
-        return preferences.getFloat(key, 0)
+    fun getFloat(key: String): Float? {
+        return preferences?.getFloat(key, 0F)
     }
 
     /**
@@ -232,7 +232,7 @@ class TitchyDB {
      * @return ArrayList of Double
      */
     fun getListDouble(key: String): ArrayList<Double> {
-        val myList = TextUtils.split(preferences.getString(key, ""), "‚‗‚")
+        val myList = TextUtils.split(preferences?.getString(key, ""), "‚‗‚")
         val arrayToList = ArrayList<String>(Arrays.asList(myList))
         val newList = ArrayList<Double>()
 
@@ -248,7 +248,7 @@ class TitchyDB {
      * @return ArrayList of Longs
      */
     fun getListLong(key: String): ArrayList<Long> {
-        val myList = TextUtils.split(preferences.getString(key, ""), "‚‗‚")
+        val myList = TextUtils.split(preferences?.getString(key, ""), "‚‗‚")
         val arrayToList = ArrayList<String>(Arrays.asList(myList))
         val newList = ArrayList<Long>()
 
@@ -282,8 +282,8 @@ class TitchyDB {
      * @param defaultValue boolean value returned if key was not found
      * @return boolean value at 'key' or 'defaultValue' if key not found
      */
-    fun getBoolean(key: String): Boolean {
-        return preferences.getBoolean(key, false)
+    fun getBoolean(key: String): Boolean? {
+        return preferences?.getBoolean(key, false)
     }
 
     /**
@@ -340,7 +340,7 @@ class TitchyDB {
      */
     fun putInt(key: String, value: Int) {
         checkForNullKey(key)
-        preferences.edit().putInt(key, value).apply()
+        preferences?.edit()?.putInt(key, value)?.apply()
     }
 
     /**
@@ -350,8 +350,8 @@ class TitchyDB {
      */
     fun putListInt(key: String, intList: ArrayList<Int>) {
         checkForNullKey(key)
-        val myIntList = intList.toArray(arrayOfNulls<Int>(intList.size()))
-        preferences.edit().putString(key, TextUtils.join("‚‗‚", myIntList)).apply()
+        val myIntList = intList.toArray(arrayOfNulls<Int>(intList.size))
+        preferences?.edit()?.putString(key, TextUtils.join("‚‗‚", myIntList))?.apply()
     }
 
     /**
@@ -361,7 +361,7 @@ class TitchyDB {
      */
     fun putLong(key: String, value: Long) {
         checkForNullKey(key)
-        preferences.edit().putLong(key, value).apply()
+        preferences?.edit()?.putLong(key, value)?.apply()
     }
 
     /**
@@ -371,8 +371,8 @@ class TitchyDB {
      */
     fun putListLong(key: String, longList: ArrayList<Long>) {
         checkForNullKey(key)
-        val myLongList = longList.toArray(arrayOfNulls<Long>(longList.size()))
-        preferences.edit().putString(key, TextUtils.join("‚‗‚", myLongList)).apply()
+        val myLongList = longList.toArray(arrayOfNulls<Long>(longList.size))
+        preferences?.edit()?.putString(key, TextUtils.join("‚‗‚", myLongList))?.apply()
     }
 
     /**
@@ -402,8 +402,8 @@ class TitchyDB {
      */
     fun putListDouble(key: String, doubleList: ArrayList<Double>) {
         checkForNullKey(key)
-        val myDoubleList = doubleList.toArray(arrayOfNulls<Double>(doubleList.size()))
-        preferences.edit().putString(key, TextUtils.join("‚‗‚", myDoubleList)).apply()
+        val myDoubleList = doubleList.toArray(arrayOfNulls<Double>(doubleList.size))
+        preferences?.edit()?.putString(key, TextUtils.join("‚‗‚", myDoubleList))?.apply()
     }
 
     /**
@@ -414,7 +414,7 @@ class TitchyDB {
     fun putString(key: String, value: String) {
         checkForNullKey(key)
         checkForNullValue(value)
-        preferences.edit().putString(key, value).apply()
+        preferences?.edit()?.putString(key, value)?.apply()
     }
 
     /**
@@ -424,8 +424,8 @@ class TitchyDB {
      */
     fun putListString(key: String, stringList: ArrayList<String>) {
         checkForNullKey(key)
-        val myStringList = stringList.toArray(arrayOfNulls<String>(stringList.size()))
-        preferences.edit().putString(key, TextUtils.join("‚‗‚", myStringList)).apply()
+        val myStringList = stringList.toArray(arrayOfNulls<String>(stringList.size))
+        preferences?.edit()?.putString(key, TextUtils.join("‚‗‚", myStringList))?.apply()
     }
 
     /**
@@ -435,7 +435,7 @@ class TitchyDB {
      */
     fun putBoolean(key: String, value: Boolean) {
         checkForNullKey(key)
-        preferences.edit().putBoolean(key, value).apply()
+        preferences?.edit()?.putBoolean(key, value)?.apply()
     }
 
     /**
@@ -484,7 +484,7 @@ class TitchyDB {
      * @param key SharedPreferences key
      */
     fun remove(key: String) {
-        preferences.edit().remove(key).apply()
+        preferences?.edit()?.remove(key)?.apply()
     }
 
     /**
@@ -501,15 +501,15 @@ class TitchyDB {
      * Clear SharedPreferences (remove everything)
      */
     fun clear() {
-        preferences.edit().clear().apply()
+        preferences?.edit()?.clear()?.apply()
     }
 
     /**
      * Retrieve all values from SharedPreferences. Do not modify collection return by method
      * @return a Map representing a list of key/value pairs from SharedPreferences
      */
-    fun getAll(): Map<String, *> {
-        return preferences.getAll()
+    fun getAll(): MutableMap<String, *>? {
+        return preferences?.getAll()
     }
 
 
@@ -520,7 +520,7 @@ class TitchyDB {
     fun registerOnSharedPreferenceChangeListener(
             listener: SharedPreferences.OnSharedPreferenceChangeListener) {
 
-        preferences.registerOnSharedPreferenceChangeListener(listener)
+        preferences?.registerOnSharedPreferenceChangeListener(listener)
     }
 
     /**
@@ -530,7 +530,7 @@ class TitchyDB {
     fun unregisterOnSharedPreferenceChangeListener(
             listener: SharedPreferences.OnSharedPreferenceChangeListener) {
 
-        preferences.unregisterOnSharedPreferenceChangeListener(listener)
+        preferences?.unregisterOnSharedPreferenceChangeListener(listener)
     }
 
 
