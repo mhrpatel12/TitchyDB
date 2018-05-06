@@ -12,6 +12,7 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 import java.util.*
+import java.util.Arrays.asList
 
 
 /**
@@ -179,7 +180,7 @@ class TitchyDB {
      */
     fun getListInt(key: String): ArrayList<Int> {
         val myList = TextUtils.split(preferences?.getString(key, ""), "‚‗‚")
-        val arrayToList = ArrayList<String>(Arrays.asList(myList))
+        val arrayToList = arrayListOf<String>(Arrays.asList(myList).toString())
         val newList = ArrayList<Int>()
 
         for (item in arrayToList)
@@ -233,7 +234,7 @@ class TitchyDB {
      */
     fun getListDouble(key: String): ArrayList<Double> {
         val myList = TextUtils.split(preferences?.getString(key, ""), "‚‗‚")
-        val arrayToList = ArrayList<String>(Arrays.asList(myList))
+        val arrayToList = arrayListOf<String>(Arrays.asList(myList).toString())
         val newList = ArrayList<Double>()
 
         for (item in arrayToList)
@@ -249,7 +250,7 @@ class TitchyDB {
      */
     fun getListLong(key: String): ArrayList<Long> {
         val myList = TextUtils.split(preferences?.getString(key, ""), "‚‗‚")
-        val arrayToList = ArrayList<String>(Arrays.asList(myList))
+        val arrayToList = arrayListOf<String>(Arrays.asList(myList).toString())
         val newList = ArrayList<Long>()
 
         for (item in arrayToList)
@@ -263,8 +264,8 @@ class TitchyDB {
      * @param key SharedPreferences key
      * @return String value at 'key' or "" (empty String) if key not found
      */
-    fun getString(key: String): String {
-        return preferences.getString(key, "")
+    fun getString(key: String): String? {
+        return preferences?.getString(key, "")
     }
 
     /**
@@ -273,7 +274,7 @@ class TitchyDB {
      * @return ArrayList of String
      */
     fun getListString(key: String): ArrayList<String> {
-        return ArrayList<String>(Arrays.asList(TextUtils.split(preferences.getString(key, ""), "‚‗‚")))
+        return arrayListOf<String>(Arrays.asList(TextUtils.split(preferences?.getString(key, ""), "‚‗‚")).toString())
     }
 
     /**
@@ -382,7 +383,7 @@ class TitchyDB {
      */
     fun putFloat(key: String, value: Float) {
         checkForNullKey(key)
-        preferences.edit().putFloat(key, value).apply()
+        preferences?.edit()?.putFloat(key, value)?.apply()
     }
 
     /**
