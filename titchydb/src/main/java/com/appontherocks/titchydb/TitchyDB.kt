@@ -18,15 +18,10 @@ import java.util.Arrays.asList
 /**
  * Created by mihir on 28/04/18.
  */
-class TitchyDB {
-    private var preferences: SharedPreferences? = null
+class TitchyDB(appContext: Context) {
+    private var preferences = PreferenceManager.getDefaultSharedPreferences(appContext)
     private var DEFAULT_APP_IMAGEDATA_DIRECTORY: String? = null
     private var lastImagePath = ""
-
-    fun TinyDB(appContext: Context) {
-        preferences = PreferenceManager.getDefaultSharedPreferences(appContext)
-    }
-
 
     /**
      * Decodes the Bitmap from 'path' and returns it
